@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:triton-lang.org)",
+      "WebSearch"
+    ]
+  }
+}
