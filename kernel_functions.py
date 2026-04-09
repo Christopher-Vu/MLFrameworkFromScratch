@@ -21,7 +21,8 @@ def add_kernel(x_ptr, y_ptr, out_ptr, n, BLOCK_SIZE: tl.constexpr):
 
 def vector_add(x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
     assert x.is_cuda and y.is_cuda, "inputs must be CUDA tensors"
-    assert x.shape == y.shape
+    if x.shape != y.shape:
+        y = y.expand_as(x)
     out = torch.empty_like(x)
     n = x.numel()
     BLOCK_SIZE = 1024
